@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-/*
+
 
 int binarySearch(int arr[], int size, int key) {
     int start = 0; // first index
@@ -47,6 +47,3 @@ int main(){
 
   cout << "Index of 3 is " << oddIndex << endl;
 }
-
-gjjj
-*/
