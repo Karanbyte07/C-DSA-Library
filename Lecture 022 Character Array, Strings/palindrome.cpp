@@ -16,9 +16,8 @@ char toLowercase(char ch){
 
 //Function to ignore alphanumeric 
 bool isAlphaNumeric(char ch){
-    if((ch>= 'a' && ch<= 'z') || (ch>= 'A' && ch<= 'Z') || (ch>= '0' && ch<= '9')){
-        return false;
-    }
+    return (ch>= 'a' && ch<= 'z') || (ch>= 'A' && ch<= 'Z') || (ch>= '0' && ch<= '9');
+       
 }
 
 //Function to get the length of character array
@@ -34,7 +33,7 @@ int getLength(char ch[]) {
 bool checkPalindrome(char a[], int n) {
     int start = 0, end = n - 1;
     while (start <= end) {
-       /*
+       
         if(!isAlphaNumeric(a[start])){
             start++; // Move forward if start is not alphanumeric
         }
@@ -42,11 +41,13 @@ bool checkPalindrome(char a[], int n) {
             end--; //agar end alphanumeric nhi h toh move backward
         }
             
-        */
+        
         //can be written as also
+        /*
         while (start < end && !isAlphaNumeric(a[start])) start++;
         while (start < end && !isAlphaNumeric(a[end])) end--;
-
+        */
+       
         if (toLowercase(a[start]) != toLowercase(a[end])) {
             return false;
         }
