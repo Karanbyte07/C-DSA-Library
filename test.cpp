@@ -1,30 +1,26 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-
+#include <vector>
+#include <algorithm>
 
 int main() {
-	// Write your code here
-	int n = 0;
-	int evenNum;
-    int oddNum;
-    cout << "Enter the digits:- ";
-	cin >> n;
+vector<int> arr1 = {1, 1, 2, 3, 3, 4, 5, 5, 6};
 
-	while(n > 0){
-		int digit = n % 10; //To find the digits from last
-		n = n / 10; // remove used digit that is last digit
+    auto it =unique(arr1.begin(), arr1.end());
 
-		//To check even
-		if(digit % 2 == 0){
-            evenNum = digit;
-			cout <<"Even numbers " <<evenNum <<endl;
-            
-		}
-		else {
-            oddNum = digit;
-			cout <<"Odd Numbers "<< oddNum <<endl;
-		}
-	}
-   
-	
+    for (int num : arr1) {cout << num << " " <<endl;   // this Modified array (not resized)
+    }
+	cout << " Modified array";
+    cout <<endl;
+
+    arr1.erase(it, arr1.end()); 
+
+	 cout << "Now erase the unwanted duplicates" <<endl;
+
+    for (int num : arr1) {
+        cout << num << " "; 
+		 
+    }
+	cout << "Final unique array";
+    return 0;
 }
