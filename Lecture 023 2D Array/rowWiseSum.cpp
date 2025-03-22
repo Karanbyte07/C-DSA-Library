@@ -17,6 +17,7 @@ void rowWiseSum(int arr[][4], int row, int col){
 }
 
 
+
 int main(){
 
     int arr[3][4];

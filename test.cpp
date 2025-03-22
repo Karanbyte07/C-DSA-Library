@@ -10,7 +10,7 @@ vector<int> arr1 = {1, 1, 2, 3, 3, 4, 5, 5, 6};
 
     for (int num : arr1) {cout << num << " " <<endl;   // this Modified array (not resized)
     }
-	cout << " Modified array";
+	cout << " Modified array ";
     cout <<endl;
 
     arr1.erase(it, arr1.end()); 
