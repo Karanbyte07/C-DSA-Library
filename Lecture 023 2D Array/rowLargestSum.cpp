@@ -1,10 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int largestSum(int arr[][3], int row, int col){
-
+int largestSum(int arr[][3]) {  
     int maxi = INT_MIN;
     int rowIndex = -1;
+
     for(int row = 0; row < 3; row++){
         int sum = 0;
         for(int col = 0; col < 3; col++){
@@ -15,9 +15,8 @@ int largestSum(int arr[][3], int row, int col){
             rowIndex = row;
         }
     }
-    return row;
+    return rowIndex;
 }
-
 int main(){
 
     int arr[3][3];
@@ -39,7 +38,7 @@ int main(){
         cout << endl;
     }
 
-    cout << "Maximum row is at number " << largestSum(arr, 3, 3) <<endl;
+    cout << "Maximum row is at index " << largestSum(arr) <<endl;
     
 
 }
