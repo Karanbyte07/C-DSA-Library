@@ -38,6 +38,7 @@ int main(){
 
 //pointer arithemetic adddition
 
+/*
 int i = 3;
 int *t = &i;
 //cout << (*t)++ <<endl;
@@ -47,7 +48,14 @@ cout << "before t: " <<t <<endl;
 t = t + 1;
 cout << "after t: " <<t <<endl;
 
+*/
 
+
+float f = 10.5;
+float p = 2.5;
+float* ptr = &f;
+
+cout << *ptr <<ptr << " " << f << " " << p;
 
 
 
