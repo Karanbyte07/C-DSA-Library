@@ -56,8 +56,13 @@ float p = 2.5;
 float* ptr = &f;
 
 cout << *ptr <<ptr << " " << f << " " << p;
+cout << endl;
 
+int temp[10];
+cout<< sizeof(temp) <<endl ;
 
+int *k = &temp[0];
+cout << sizeof(k);
 
 return 0;
 }
