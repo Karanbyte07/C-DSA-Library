@@ -3,5 +3,11 @@ using namespace std;
 
 int main(){
 
-    cout << "HEllo world !" <<endl;
+  char *ptr; 
+  char Str[] = "abcdefg";
+  ptr = Str;
+  ptr += 5;
+  cout << ptr;
+  return 0;
+  
 }
