@@ -1,12 +1,12 @@
 #include <iostream>
 using namespace std;
 
-void print(int n){
 
-    if(n == 0) return ; //base case
+int print(int n){
+    if(n == 0) return 1; //base case
 
     print(n-1); //recursive relation
-    
+
     cout << n << " ";
     
 }
