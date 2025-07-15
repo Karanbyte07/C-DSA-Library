@@ -82,3 +82,54 @@ int main(){
     }
 
 }
+/*
+#include <iostream>
+using namespace std;
+
+void merge(int arr[], int temp[], int mid, int s, int e){
+  int i = s; //starting index of left arr
+  int j = mid + 1; //right arr
+  int k = s;//temp arr
+
+  while(i <= mid && j <= e){ //copy arrays into temp arr
+    if(arr[i] <= arr[j]){
+      temp[k++] = arr[i++]; 
+    }
+    else{
+      temp[k++] = arr[j++];
+    }
+  }
+
+  while(i <= mid) temp[k++] = arr[i++]; //copy remining elements
+  while(j <= e) temp[k++] = arr[j++];
+
+  //copy back to original array
+  for(int idx = s; idx <= e; idx++){
+    arr[idx] = temp[idx];
+  }
+}
+
+void mergeSort(int arr[], int temp[], int s, int e){
+    //base case
+    if(s >= e) return ;
+    int mid = (s+e)/2;
+
+    mergeSort(arr,temp,s,mid); //sort left part
+    mergeSort(arr,temp,mid+1,e); //sort right part
+    merge(arr,temp, mid,s,e); //merge both
+  }
+
+
+int main() {
+    int arr[] = {38, 27, 43, 10};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int temp[n];
+
+    mergeSort(arr, temp, 0, n - 1);
+
+    for (int i = 0; i < n; ++i) {
+        cout << arr[i] << " ";
+    }
+    return 0;
+}
+*/
