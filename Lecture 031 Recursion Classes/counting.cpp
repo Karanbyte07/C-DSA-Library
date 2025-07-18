@@ -20,3 +20,5 @@ int main(){
     print(num);
 
 }
+
+//T.C -> O(n)

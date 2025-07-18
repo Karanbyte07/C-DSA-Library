@@ -19,3 +19,5 @@ int main(){
 
     cout << "the factorial of " <<n << " is -> " <<result;
 }
+
+//T.C -> O(n)

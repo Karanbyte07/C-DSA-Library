@@ -24,3 +24,4 @@ int main(){
 
    cout << "Sum of element of an array -> " <<ans;
 }
+//T.C -> O(n)

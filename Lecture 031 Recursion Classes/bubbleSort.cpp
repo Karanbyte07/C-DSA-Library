@@ -24,3 +24,5 @@ int main() {
         cout << arr[i] << " " ;
     }
 }
+
+//T.C -> O(n^2)
