@@ -1,57 +1,97 @@
-#include <iostream> 
+#include <iostream>
 using namespace std;
 
-int partition(int arr[], int s, int e){
-  int pivot = arr[s];
-  int count = 0;
-  for(int i = s+1; i <= e; i++ ){
-    if(arr[i] < pivot) count++;
+class Node
+{
+public:
+  int data;
+  Node *next;
+
+  Node(int data)
+  {
+    this->data = data;
+    this->next = NULL;
   }
 
-  int pivotIndex = s + count;
-  swap(arr[s], arr[pivotIndex]);
+  ~Node() {
+        //memory free
+        int value = this->data;
+        if(this->next == NULL){
+            delete next;
+            this->next = NULL;
+        }
+        cout << "deleted " << this->data <<endl;
+    }
+};
 
-  //arrange left and right part
-  int i = s;
-  int j = e;
- while(i < pivotIndex && j > pivotIndex){
-    if(arr[i] > arr[pivotIndex] && arr[j] < arr[pivotIndex]){
-        swap(arr[i], arr[j]);
-        i++;
-        j--;
-    } else {
-        if(arr[i] <= arr[pivotIndex]) i++;
-        if(arr[j] >= arr[pivotIndex]) j--;
+void print(Node *head)
+{
+  Node *temp = head;
+  // cout << "1" <<endl;
+  while (temp != NULL)
+  {
+    cout << temp->data <<" ";
+    temp = temp->next;
+  }
+  cout << endl;
+}
+
+void insertAtHead(Node* &head, int data){
+  Node* temp = new Node(data);
+  temp->next = head;
+  head = temp;
+}
+
+void insertAtTail(Node* &tail, int data){
+  Node* temp = new Node(data);
+  tail->next = temp;
+  tail = tail->next;
+}
+
+void position(Node* &head, Node* &tail, int position, int data){
+  if(position == 1){
+    insertAtHead(head, data);
+    return;
+  }
+  
+  int currentPos = 1;
+  Node* temp = head;
+
+  while(currentPos < position -1){
+    temp = temp->next;
+    currentPos++;
+  }
+
+  Node* nodeToInsert = new Node(data);
+    nodeToInsert->next = temp->next;
+    temp->next= nodeToInsert;
+
+    if(temp->next == NULL){
+      insertAtTail(tail,data);
+      return;
     }
 }
 
-  return pivotIndex;
-
-
-}
-
-void quickSort(int arr[], int s, int e){
-  if(s>=e) return ;
-
-
-  int pivot = partition(arr,s,e);
-
-  quickSort(arr,s,pivot-1); //left part
-
-  quickSort(arr,pivot+1,e); //right part
+void deletion(Node* &head, Node* &tail, int position, int data){
+  Node* temp = head;
+  temp->next = currNext;
 
 }
 
-int main() {
-  int arr[] = {3,1,4,5,2};
-  int n = sizeof(arr)/sizeof(arr[0]);
+int main()
+{
+  Node *naya = new Node(10);
+  Node* head = naya;
+  Node* tail = naya;
+  print(head);
 
+  insertAtHead(head, 20);
+  print(head);
 
-  quickSort(arr,0,n-1);
+  insertAtTail(tail, 100);
+  print(head);
 
-  for(int i = 0; i < n; i++){
-    cout << arr[i] << " ";
-  }
-
-
+  position(head,tail,4,101);
+  print(head);
+  return 0;
 }
