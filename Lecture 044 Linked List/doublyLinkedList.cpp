@@ -4,7 +4,7 @@ using namespace std;
 class Node {
     public:
     int data;
-    Node* next; //created a node which point next
+    Node* next; //A reference to the next node in the list.
     Node* prev; // which points previous node
 
     //constructor
@@ -58,7 +58,7 @@ void insertAtHead(Node* &head, Node* &tail, int data){
         Node* temp = new Node(data);
         temp->next = head;
         head->prev = temp;
-        head = temp;
+        head = temp; 
     }
 }
 
@@ -130,11 +130,11 @@ void deletion(int position, Node* &head){
     Node* currNode =  head;
     Node* prevNode = NULL;
 
-    int currpos  = 1;
-    while(currpos < position  && currNode != NULL){
+    int cnt  = 1;
+    while(cnt < position  && currNode != NULL){
         prevNode = currNode; //kyuki previous abhi  null  h 
         currNode =  currNode->next;
-        currpos++;
+        cnt++;
     }
 
 

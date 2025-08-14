@@ -6,92 +6,113 @@ class Node
 public:
   int data;
   Node *next;
+  Node *prev;
 
   Node(int data)
   {
     this->data = data;
     this->next = NULL;
+    this->prev = NULL;
   }
-
-  ~Node() {
-        //memory free
-        int value = this->data;
-        if(this->next == NULL){
-            delete next;
-            this->next = NULL;
-        }
-        cout << "deleted " << this->data <<endl;
+  ~Node(){
+    int val = this->data;
+    if(next != NULL){
+      this->prev = NULL;
+      this->next = NULL;
     }
+    cout << "memory free for" << this->data <<endl;
+  }
 };
 
-void print(Node *head)
+void insertAtHead(Node* &head, int data)
 {
-  Node *temp = head;
-  // cout << "1" <<endl;
-  while (temp != NULL)
-  {
-    cout << temp->data <<" ";
+  Node *temp = new Node(data);
+  temp->next = head;
+  head->prev = temp;
+  head = temp;
+   temp->prev = NULL;
+}
+
+void insertAtTail(Node* &tail, int d){
+  Node *temp = new Node(d);
+  tail->next = temp;
+  temp->prev =  tail;
+  tail = temp;
+  temp->next = NULL;
+}
+
+void print(Node* head){
+  Node* temp = head;
+  while(temp != NULL){
+    cout << temp->data << " ";
     temp = temp->next;
   }
   cout << endl;
 }
 
-void insertAtHead(Node* &head, int data){
-  Node* temp = new Node(data);
-  temp->next = head;
-  head = temp;
-}
+void insertatpos(Node* &head,Node* &tail, int pos, int d ){
+  Node* temp = head;
+  int cnt = 1;
+  
+  while(cnt < pos-1){
+    temp = temp->next;
+    cnt++;
+  }
 
-void insertAtTail(Node* &tail, int data){
-  Node* temp = new Node(data);
-  tail->next = temp;
-  tail = tail->next;
-}
+  if(pos == 1){
+    insertAtHead(head,d);
+    return ;
+  }
 
-void position(Node* &head, Node* &tail, int position, int data){
-  if(position == 1){
-    insertAtHead(head, data);
+  Node* nodeToInsert = new Node(d);
+    nodeToInsert->next = temp->next;
+    temp->next->prev = nodeToInsert;
+    temp->next = nodeToInsert;
+    nodeToInsert->prev = temp;
+
+  if(temp->next == NULL){
+    insertAtTail(tail,d);
     return;
   }
-  
-  int currentPos = 1;
-  Node* temp = head;
 
-  while(currentPos < position -1){
-    temp = temp->next;
-    currentPos++;
+}
+
+void deletion(Node* &head, int position){
+
+  if(position == 1){
+  Node* temp = head;
+  temp->next->prev = NULL;
+  head =  temp->next;
+  temp->next = NULL;
+  
+  delete temp; 
   }
 
-  Node* nodeToInsert = new Node(data);
-    nodeToInsert->next = temp->next;
-    temp->next= nodeToInsert;
+  Node* curr = head;
+  Node* prev = NULL;
+  int cnt = 1;
 
-    if(temp->next == NULL){
-      insertAtTail(tail,data);
-      return;
-    }
+  
+  
+ 
 }
-
-void deletion(Node* &head, Node* &tail, int position, int data){
-  Node* temp = head;
-  temp->next = currNext;
-
-}
-
 int main()
 {
-  Node *naya = new Node(10);
-  Node* head = naya;
-  Node* tail = naya;
+  Node* head = new Node(656);
+
+  Node* tail = head;
   print(head);
 
-  insertAtHead(head, 20);
+  insertAtHead(head, 15);
   print(head);
 
-  insertAtTail(tail, 100);
+  insertAtTail(tail,205);
   print(head);
 
-  position(head,tail,4,101);
+  insertatpos(head, tail, 3, 890);
   print(head);
-  return 0;
+
+  deletion(head,1);
+  print(head);
+
 }

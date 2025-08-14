@@ -117,7 +117,7 @@ void deletion(int position, Node* &head){
         currpos++;
     }
 
-
+    //last node deleted and same for middle node
     prevNode->next = currNode->next;
     currNode->next = NULL;
     delete currNode;
@@ -151,6 +151,6 @@ int main() {
 
     //deletion
 
-    deletion(2,head);
+    deletion(4,head);
     print(head);
 }
