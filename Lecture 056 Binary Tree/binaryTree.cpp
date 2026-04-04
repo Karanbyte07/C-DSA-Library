@@ -52,7 +52,7 @@ void levelOrderTraversal(node *root)
     queue<node *> q;
     q.push(root);
 
-    q.push(NULL); // Marker for end of level
+    q.push(NULL); //pehla root ke baad ek separator daal diya 
 
     while (!q.empty())
     {
@@ -60,9 +60,9 @@ void levelOrderTraversal(node *root)
         q.pop();
 
         // enter using separator for level order traversal
-        if (temp == NULL)
-        {                 // purana level complete ho gya
-            cout << endl; // End of current level
+        if (temp == NULL) // purana level complete ho gya
+        {                 
+            cout << endl; // enter mar do 
             if (!q.empty())
             {                 // queue still has nodes for next level
                 q.push(NULL); // Marker for next level
@@ -72,11 +72,11 @@ void levelOrderTraversal(node *root)
         else
         {
             cout << temp->data << " ";
-            if (temp->left)
+            if (temp->left) //agar temp ka left child exist karta hai to usko queue me daal do
             {
                 q.push(temp->left);
             }
-            if (temp->right)
+            if (temp->right) 
             {
                 q.push(temp->right);
             }
@@ -99,6 +99,16 @@ void preOrder(node *root)
     cout << root->data << " "; // N
     preOrder(root->left);      // L
     preOrder(root->right);     // R
+}
+
+void inOrder(node* root){
+    //base case
+    if(root == NULL){
+        return;
+    }
+    inOrder(root->left);
+    cout << root->data << " ";
+    inOrder(root->right);
 }
 
 void postOrder(node *root)
@@ -152,7 +162,7 @@ int main()
     node *root = NULL;
 
     // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
-/*
+
     // Creating a tree from user input
     root = buildTree(root);
 
@@ -171,11 +181,11 @@ int main()
 
     cout << "Postorder Traversal: " << endl;
     postOrder(root);
-*/
+
 
     // level order se tree build karna
-    buildFromLevelOrder(root);
-    levelOrderTraversal(root);
+   // buildFromLevelOrder(root);
+    //levelOrderTraversal(root);
     // 1 3 5 7 11 17 -1 -1 -1 -1 -1 -1 -1
 
     return 0;
