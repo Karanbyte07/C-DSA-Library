@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 using namespace std;
 
 class heap {
@@ -76,6 +77,18 @@ class heap {
         }
     }
 
+    void heapsort(int arr[], int n){
+        int temp = n;
+        while(temp > 1){
+            //step 1: swap first and last element
+            swap(arr[temp], arr[1]);
+            temp--;
+
+            //step 2: heapify the root element
+            heapify(arr, temp, 1);
+        }
+    }
+
     void print(){
         for(int i = 1; i <= size; i++){
             cout << arr[i] << " ";
@@ -97,6 +110,7 @@ int main(){
     h.print();
 
 
+    //heap creation from array
     int arr[6] = {-1, 54, 53, 55, 52, 50};
     int n = 5;
     for(int i = n/2; i > 0; i--){
@@ -108,6 +122,39 @@ int main(){
         cout << arr[i] << " ";
     }
     cout << endl;
+
+
+    //heap sort
+    h.heapsort(arr, n);
+    cout << "Printing the sorted array now " << endl;
+    for(int i = 1; i <= n; i++){
+        cout << arr[i] << " ";
+    }
+    cout <<endl;
+
+
+    //priority queue - default it creates max heap
+    priority_queue<int> pq;
+    pq.push(4);
+    pq.push(2);
+    pq.push(5);
+    pq.push(1);
+
+    cout << "Element at top of the priority queue is: " << pq.top() << endl;
+
+    cout << "Size of priority queue is: " << pq.size() << endl;
+
+
+    //min heap
+    priority_queue<int, vector<int>, greater<int>> minheap;
+    minheap.push(4);
+    minheap.push(2);
+    minheap.push(5);
+    minheap.push(1);
+
+    cout << "Element at top of the priority queue is: " << minheap.top() << endl;
+
+    cout << "Size of priority queue is: " << minheap.size() << endl;
 
     return 0;
 }
