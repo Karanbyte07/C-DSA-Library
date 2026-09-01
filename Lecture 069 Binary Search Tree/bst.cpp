@@ -56,6 +56,16 @@ void levelOrderTraversal(Node *root)
     }
 }
 
+void inOrder(Node* root){
+    //base case
+    if(root == NULL){
+        return;
+    }
+    inOrder(root->left);
+    cout << root->data << " ";
+    inOrder(root->right);
+}
+
 Node* insertBst(Node *root, int d){
     //base case
     if(root == NULL){
@@ -172,6 +182,8 @@ int main ()
     root = deleteNode(root, 10);
 
     levelOrderTraversal(root);
+    cout << "inorder traversal  " <<endl;
+    inOrder(root);
 
     return 0;
     

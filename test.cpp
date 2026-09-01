@@ -1,61 +1,96 @@
 #include <iostream>
-#include <stack>
+#include <queue>
 using namespace std;
 
-class Stack {
-    public :
-    int *arr;
-    int top;
-    int size;
+class node
+{
+public:
+    int data;
+    node *left;
+    node *right;
 
-    Stack(int size){
-        this->size = size;
-        arr = new int[size];
-        top = -1;
+    node(int d)
+    {
+        this->data = d;
+        this->left = NULL;
+        this->right = NULL;
     }
-
-    void push(int element){
-        if(size - top > 1){
-            top++;
-            arr[top] = element;
-        }else{
-            cout <<"stack is overflow" <<endl;
-        }
-    }
-
-    void pop(){
-        if(top >= 0){
-            top--;
-        }else{
-            cout << "stack is underflow" <<endl;
-        }
-    }
-
-    int peek(){
-        if(top >= 0){
-           return  arr[top]; 
-        }else{
-            cout << "stack is empty" <<endl;
-            return -1;
-        }
-    }
-
-    bool isEmpty(){
-        if(top == -1) return true;
-        else false;
-    }
-
 };
 
-int main(){
-    Stack st(5);
-    st.push(2);
-    st.push(4);
-    st.push(5);
-    st.push(9);
-    
+node *binaryTree(node *root)
+{
 
-    cout << st.peek() <<endl;
-    st.pop();
-    cout << st.peek() <<endl;
+    cout << "Enter the data for the node: " << endl;
+    int data;
+    cin >> data;
+    root = new node(data);
+
+    // Base case: if input is -1, this position is NULL (no node)
+    if (data == -1)
+    {
+        return NULL;
+    }
+
+    // Recursively build the left subtree
+    cout << "Enter data for inserting in left of " << data << endl;
+    root->left = binaryTree(root->left);
+
+    // Recursively build the right subtree
+    cout << "Enter data for inserting in right of " << data << endl;
+    root->right = binaryTree(root->right);
+
+    return root;
+}
+
+void levelOrderTraversal(node *root)
+{
+    queue<node *> q;
+    q.push(root);
+    q.push(NULL);
+
+    while (!q.empty())
+    {
+        node *temp = q.front();
+        q.pop();
+
+        if (temp == NULL)
+        {
+            cout << endl;
+            if (!q.empty())
+            {
+                q.push(NULL);
+            }
+        }
+        else
+        {
+            if (temp->left)
+            {
+                q.push(temp->left);
+            }
+            if (temp->right)
+            {
+                q.push(temp->right);
+            }
+            cout << temp->data;
+        }
+    }
+}
+
+void inOrder(node *root){
+    //base case
+    if(root == NULL) return;
+
+    //left
+    inOrder(root->left);
+    //node print
+}
+
+int main()
+{
+    node *root = NULL;
+    root = binaryTree(root);
+
+    cout << "level order traversal" <<endl;
+    levelOrderTraversal(root);
+
 }
